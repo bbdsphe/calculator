@@ -37,7 +37,7 @@ function parseExpression(expression) {
     for (let index = 0; index < expression.length; index += 1) {
         let character = expression[index];
 
-        if (isNumber(character)) {
+        if (isNumber(character) || character == '.') {
             currentToken += character;
         } else {
             // Character is is not a number (Possibly a operator or a letter)
