@@ -97,7 +97,7 @@ function infixToPostfix(infix) {
             postfix.push(token);
         }
 
-        else if (/[+\-*/^sinco]/.test(token)) {
+        else if (/[+\-*%/^sinco]/.test(token)) {
             while (
                 operators.length > 0 &&
                 precedence[token] <= precedence[operators[operators.length - 1]]
@@ -126,7 +126,6 @@ function infixToPostfix(infix) {
     }
 
     return postfix;
-
 }
 
 function evaluatePostfix(postfix) {
