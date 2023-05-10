@@ -35,6 +35,7 @@ main {
     border-color: #797593;
     border-width: 2px;
     border-style: solid;
+    overflow-x: hidden;
 }
 
 #buttons {

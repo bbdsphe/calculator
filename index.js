@@ -215,6 +215,7 @@ equalButton.addEventListener('click', (event) => {
 
     string = value.toString();
     updateDisplay();
+    string = '0'
 });
 
 clearAllButton.addEventListener('click', (event) => {
