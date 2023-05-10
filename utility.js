@@ -53,13 +53,12 @@ function parseExpression(expression) {
 
             // This handles negative numbers case
 
-            if (character == '-' && (index == 0 || isOperator(lastToken))) {
+            if (character == '-' && (index == 0 || isOperator(previousToken) || isParen(previousToken))) {
                 currentToken += character;
             }
 
             // This handles simple operators
 
-            //else if (/[+\-*/%]/.test(character) || isParen(character)) {
             else if (/[+\-*/%]/.test(character)) {
                 tokens.push(character);
             }
@@ -77,7 +76,7 @@ function parseExpression(expression) {
             }
         }
 
-        lastToken = character;
+        previousToken = character;
     }
 
     if (currentToken != '') {
