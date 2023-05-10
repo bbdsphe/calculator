@@ -1,10 +1,9 @@
 // Collection of utility definitions
 
-const simpleOperators = ['+', '-', '*', '/', '%'];
-const specialOperators = ['^'];
+const simpleOperators = ['+', '-', '*', '/', '%', '^'];
 const trigOperators = ['sin', 'cos', 'tan'];
 
-const operators = simpleOperators.concat(specialOperators).concat(trigOperators);
+const operators = simpleOperators.concat(trigOperators);
 
 const precedence = {
     '-': 1,
@@ -141,45 +140,49 @@ function evaluatePostfix(postfix) {
             operands.push(parseFloat(token));
         }
 
-        let secondOperand = operands.pop();
-        let firstOperand = operands.pop();
+        else {
+            let secondOperand;
+            let firstOperand;
 
-        let value;
+            if (simpleOperators.includes(token)) secondOperand = operands.pop();
+            firstOperand = operands.pop();
 
-        switch(token) {
-            case '+':
-                value = firstOperand + secondOperand;
-                break;
-            case '-':
-                value = firstOperand - secondOperand;
-                break;
-            case '*':
-                value = firstOperand * secondOperand;
-                break;
-            case '/':
-                value = firstOperand / secondOperand;
-                break;
-            case '**':
-                value = firstOperand ** secondOperand;
-                break;
-            case 'sin':
-                value = Math.sin(firstOperand);
-                break;
-            case 'cos':
-                value = Math.cos(firstOperand);
-                break;
-            case 'tan':
-                value = Math.tan(firstOperand);
-                break;
+            let value;
 
-            default:
-                break;
+            switch(token) {
+                case '+':
+                    value = firstOperand + secondOperand;
+                    break;
+                case '-':
+                    value = firstOperand - secondOperand;
+                    break;
+                case '*':
+                    value = firstOperand * secondOperand;
+                    break;
+                case '/':
+                    value = firstOperand / secondOperand;
+                    break;
+                case '**':
+                    value = firstOperand ** secondOperand;
+                    break;
+                case 'sin':
+                    value = Math.sin(firstOperand);
+                    console.log(value);
+                    break;
+                case 'cos':
+                    value = Math.cos(firstOperand);
+                    break;
+                case 'tan':
+                    value = Math.tan(firstOperand);
+                    break;
+
+                default:
+                    break;
+            }
+
+            operands.push(value);
         }
-
-        operands.push(value);
     }
 
     return operands.pop();
 }
-
-console.log(evaluatePostfix(infixToPostfix(parseExpression('sin(2) + cos(3) - tan(1)'))));
