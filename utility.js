@@ -32,7 +32,7 @@ function isParen(token) {
 function parseExpression(expression) {
     let tokens = [];
     let currentToken = '';
-    let lastToken = '';
+    let previousToken = '';
 
     for (let index = 0; index < expression.length; index += 1) {
         let character = expression[index];
@@ -59,7 +59,7 @@ function parseExpression(expression) {
 
             // This handles simple operators
 
-            else if (/[+\-*/%]/.test(character)) {
+            else if (/[+\-*/%]/.test(character) || isParen(character)) {
                 tokens.push(character);
             }
 
