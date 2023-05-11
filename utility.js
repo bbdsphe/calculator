@@ -59,14 +59,8 @@ function parseExpression(expression) {
 
             // This handles simple operators
 
-            else if (/[+\-*/%]/.test(character) || isParen(character)) {
+            else if (/[+\-*/%^]/.test(character) || isParen(character)) {
                 tokens.push(character);
-            }
-
-            // This handles exponentiation
-
-            else if (character == '^') {
-                tokens.push('**');
             }
 
             // This handles trigonometric operators
@@ -160,8 +154,11 @@ function evaluatePostfix(postfix) {
                 case '/':
                     value = firstOperand / secondOperand;
                     break;
-                case '**':
+                case '^':
                     value = firstOperand ** secondOperand;
+                    break;
+                case '%':
+                    value = firstOperand % secondOperand;
                     break;
                 case 'sin':
                     value = Math.sin(firstOperand);
