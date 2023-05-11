@@ -1,5 +1,6 @@
 // Calculator application logic entry point
 
+const zeroButton = document.getElementById('zero');
 const oneButton = document.getElementById('one');
 const twoButton = document.getElementById('two');
 const threeButton = document.getElementById('three');
@@ -58,6 +59,13 @@ function backspace() {
 function clearAll() {
     string = '0';
 }
+
+zeroButton.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    appendString('0');
+    updateDisplay();
+});
 
 oneButton.addEventListener('click', (event) => {
     event.preventDefault();
